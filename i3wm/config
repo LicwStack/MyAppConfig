@@ -17,7 +17,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id redshift
 
 # Wallpaper
-exec --no-startup-id feh --bg-scale "~/.config/i3/wallpaper.jpg"
+exec --no-startup-id sh ~/.config/i3/fehbg.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -174,7 +174,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db-
 
 # i3lock
 mode "i3lock: Return to lock/Escape to Cancel" {
-	bindsym Return mode "default" exec i3lock -I 600 -i ~/.config/i3/wallpaper.jpg
+	bindsym Return mode "default" exec i3lock -I 600 -i ~/.config/i3/lock.png
 	bindsym Escape mode "default"
 }
 bindsym Ctrl+mod1+l mode "i3lock: Return to lock/Escape to Cancel"
