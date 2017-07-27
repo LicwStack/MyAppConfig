@@ -10,6 +10,14 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $mod1 Mod1
+
+# Autostart programs
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id redshift
+
+# Wallpaper
+exec --no-startup-id feh --bg-scale "~/.config/i3/wallpaper.jpg"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -32,8 +40,8 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# kill focused window
-bindsym $mod+Shift+q kill
+# kill focused window($mod1=Alt)
+bindsym $mod1+F4 kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -148,6 +156,28 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 2db+ unmute
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db- unmute
+
+# Power manager
+#set $mod_system select: lock(L) logout(O) reboot(R) shutdown(S) cancel(Esc)
+#bindsym $mod+Shift+q mode "$mod_system"
+#mod "$mod_system" {
+#	bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
+#	bindsym o exec --no-startup-id i3-msg exit, mode "default"
+#	bindsym r exec --no-startup-id systemctl reboot, mode "default"
+#	bindsym s exec --no-startup-id systemctl poweroff, mode "default"
+#	bindsym Escape mode "default"
+#}
+
+# i3lock
+mode "i3lock: Return to lock/Escape to Cancel" {
+	bindsym Return mode "default" exec i3lock -I 600 -i ~/.config/i3/wallpaper.jpg
+	bindsym Escape mode "default"
+}
+bindsym Ctrl+mod1+l mode "i3lock: Return to lock/Escape to Cancel"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
